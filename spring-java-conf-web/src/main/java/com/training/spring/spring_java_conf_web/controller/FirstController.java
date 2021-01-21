@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.training.spring.spring_java_conf_web.model.UserDetails;
@@ -46,5 +47,18 @@ public class FirstController {
 		// call Repository - >store user name and pwd in table
 		return viewAllUsers(); // /WEB-INF/views/viewAllUsers.jsp
 	}
+	
+	@RequestMapping(value ="/editUser")//GET
+	public ModelAndView editUser(@RequestParam Integer userId) {
+		UserDetails userDetails = userServiceImpl.getUserByUserId(userId);
+		ModelAndView mav = new ModelAndView("editUser");// /WEB-INF/views/editUser.jsp
+		mav.addObject("user", userDetails);
+		return mav;
+	}
 
+	@RequestMapping(value ="/updateUser",method = RequestMethod.POST)
+	public ModelAndView updateUser(UserDetails userDetails) {
+		userServiceImpl.updateUser(userDetails);
+		return viewAllUsers() ;
+	}
 }

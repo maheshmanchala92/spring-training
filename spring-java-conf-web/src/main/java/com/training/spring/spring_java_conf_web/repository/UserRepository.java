@@ -2,9 +2,11 @@ package com.training.spring.spring_java_conf_web.repository;
 
 import java.util.List;
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,14 +28,21 @@ public class UserRepository {
 		Query query = getSession().createQuery("from UserDetails");//select * from userDetails
 		@SuppressWarnings("unchecked")
 		List<UserDetails> results = query.list();
-		System.out.println(results);
         return results;
 	}
 
 	public void saveUser(UserDetails user) {
 		getSession().save(user);
-		//session.save(entity)
-		//creating insert query 
-		//commit
+	}
+
+	public UserDetails getUserByUserId(Integer userId) {
+		return (UserDetails)getSession().get(UserDetails.class, userId);
+	}
+
+	public void updateUser(UserDetails userDetails) {
+		Session ss = getSession();
+		Transaction tx = ss.beginTransaction();
+		ss.update(userDetails);
+		tx.commit();
 	}
 }

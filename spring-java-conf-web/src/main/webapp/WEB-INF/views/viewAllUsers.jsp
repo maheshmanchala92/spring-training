@@ -1,16 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-Test
-</body>
-</html> --%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -92,7 +79,7 @@ tr:nth-child(even) {
 				<td><c:out value="${user.password}" /></td>
 				<td><c:out value="${user.email}" /></td>
 				<td>
-				<a class= "btn btn-success" href= "editUser?userName=${user.userName}">Edit</a>
+				<a class= "btn btn-success" href= "editUser?userId=${user.userId}">Edit</a>
 				 / <a class= "btn btn-danger" href="javascript:deleteUsr('${user.userName}');" >Delete</a>
 				</td>
 			</tr>

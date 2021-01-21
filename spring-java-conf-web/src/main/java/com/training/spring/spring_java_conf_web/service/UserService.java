@@ -9,4 +9,8 @@ public interface UserService {
 	public List<UserDetails> getUsers();
 
 	void saveUser(UserDetails user);
+
+	UserDetails getUserByUserId(Integer userId);
+
+	void updateUser(UserDetails userDetails);
 }
