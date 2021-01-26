@@ -42,10 +42,10 @@ public class FirstController {
 	}
 	
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-	public ModelAndView sendUserNameModel(UserDetails user) {
+	public String sendUserNameModel(UserDetails user) {
 		userServiceImpl.saveUser(user);
 		// call Repository - >store user name and pwd in table
-		return viewAllUsers(); // /WEB-INF/views/viewAllUsers.jsp
+		return "redirect:viewAllUsers";// viewAllUsers(); // /WEB-INF/views/viewAllUsers.jsp
 	}
 	
 	@RequestMapping(value ="/editUser")//GET
@@ -59,6 +59,12 @@ public class FirstController {
 	@RequestMapping(value ="/updateUser",method = RequestMethod.POST)
 	public ModelAndView updateUser(UserDetails userDetails) {
 		userServiceImpl.updateUser(userDetails);
-		return viewAllUsers() ;
+		return viewAllUsers();
+	}
+
+	@RequestMapping(value = "/deleteUser") // , method = RequestMethod.DELETE
+	public ModelAndView deleteUser(@RequestParam Integer userId) {
+		userServiceImpl.deleteUserByUserId(userId);
+		return viewAllUsers();
 	}
 }

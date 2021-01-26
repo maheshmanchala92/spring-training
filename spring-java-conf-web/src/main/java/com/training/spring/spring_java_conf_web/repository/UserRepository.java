@@ -32,7 +32,10 @@ public class UserRepository {
 	}
 
 	public void saveUser(UserDetails user) {
-		getSession().save(user);
+		Session ss = getSession();
+		Transaction tx = ss.beginTransaction();
+		ss.save(user);
+		tx.commit();		
 	}
 
 	public UserDetails getUserByUserId(Integer userId) {
@@ -43,6 +46,15 @@ public class UserRepository {
 		Session ss = getSession();
 		Transaction tx = ss.beginTransaction();
 		ss.update(userDetails);
+		tx.commit();
+	}
+	
+	public void deleteUserByUserId(Integer userId) {
+		UserDetails userDetails = new UserDetails();
+		userDetails.setUserId(userId);
+		Session sessionObj = getSession();
+		Transaction tx = sessionObj.beginTransaction();
+		sessionObj.delete(userDetails);
 		tx.commit();
 	}
 }

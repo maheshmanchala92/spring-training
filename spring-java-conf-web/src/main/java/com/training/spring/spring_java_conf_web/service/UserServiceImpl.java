@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.training.spring.spring_java_conf_web.model.UserDetails;
 import com.training.spring.spring_java_conf_web.repository.UserRepository;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.getUsers();
 	}
 
+	@Transactional
 	@Override
 	public void saveUser(UserDetails user) {
 		userRepository.saveUser(user);
@@ -32,6 +34,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(UserDetails userDetails) {
 		userRepository.updateUser(userDetails);
+	}
+
+	@Override
+	public void deleteUserByUserId(Integer userId) {
+		userRepository.deleteUserByUserId(userId);
 	}
 
 }

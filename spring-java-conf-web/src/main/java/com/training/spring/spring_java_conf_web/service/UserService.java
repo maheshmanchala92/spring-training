@@ -13,4 +13,6 @@ public interface UserService {
 	UserDetails getUserByUserId(Integer userId);
 
 	void updateUser(UserDetails userDetails);
+
+	void deleteUserByUserId(Integer userId);
 }

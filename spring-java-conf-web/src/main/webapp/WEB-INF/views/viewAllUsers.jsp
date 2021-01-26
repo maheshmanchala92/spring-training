@@ -23,26 +23,11 @@ table {
 td,th{
 border: 1px solid #aaaaaa;
 }
-/* table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-} */
 </style>
 <script type="text/javascript">
-/* function deleteUsr (userName){
+function deleteUsr(userId){
 	 $.ajax({  
-         url: "http://localhost:8080/Spring-App/deleteUser?userName="+userName ,  
+         url: "http://localhost:8080/spring-java-conf-web/deleteUser?userId="+userId,  
          type: 'DELETE',  
          crossDomain: true,
          success: function (data) { 
@@ -54,7 +39,7 @@ tr:nth-child(even) {
              console.log('Error in Operation'+errorThrown);  
          }  
      }); 
-} */
+} 
 </script>
 </head>
 <body>
@@ -80,7 +65,7 @@ tr:nth-child(even) {
 				<td><c:out value="${user.email}" /></td>
 				<td>
 				<a class= "btn btn-success" href= "editUser?userId=${user.userId}">Edit</a>
-				 / <a class= "btn btn-danger" href="javascript:deleteUsr('${user.userName}');" >Delete</a>
+				 / <a class= "btn btn-danger" href="javascript:deleteUsr(${user.userId});" >Delete</a>
 				</td>
 			</tr>
 		</c:forEach>
