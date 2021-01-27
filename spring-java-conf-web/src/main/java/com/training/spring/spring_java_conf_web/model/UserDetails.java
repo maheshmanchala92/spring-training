@@ -1,8 +1,14 @@
 package com.training.spring.spring_java_conf_web.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserDetails {
@@ -14,13 +20,23 @@ public class UserDetails {
 	private String password;
 	private String email;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ssnId", referencedColumnName = "id")
+    private SSNNumber ssn;
+	
+//	@OneToMany(mappedBy="userDetails")
+	@OneToMany(
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	    )
+    private List<Address> course;
 
-	public String getEmail() {
-		return email;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -39,17 +55,31 @@ public class UserDetails {
 		this.password = password;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
-	@Override
-	public String toString() {
-		return "UserDetails [userId=" + userId + ", userName=" + userName + ", password=" + password + ", email="
-				+ email + "]";
+
+	public SSNNumber getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(SSNNumber ssn) {
+		this.ssn = ssn;
+	}
+
+	public List<Address> getCourse() {
+		return course;
+	}
+
+	public void setCourse(List<Address> course) {
+		this.course = course;
+	}
+
+	public UserDetails() {
+		super();
 	}
 }

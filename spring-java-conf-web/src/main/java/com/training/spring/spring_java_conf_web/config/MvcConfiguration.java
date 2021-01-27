@@ -37,32 +37,32 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
-	        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-	        sessionFactory.setDataSource(dataSource());
-	        sessionFactory.setPackagesToScan(new String[] { "com.training.spring.spring_java_conf_web.model" });
-	        sessionFactory.setHibernateProperties(hibernateProperties());
-	        return sessionFactory;
+			LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+			sessionFactory.setDataSource(dataSource());
+			sessionFactory.setPackagesToScan(new String[] { "com.training.spring.spring_java_conf_web.model" });
+			sessionFactory.setHibernateProperties(hibernateProperties());
+			return sessionFactory;
 	}
-	     
-	    @Bean
-	    public DataSource dataSource() {
-	        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	        dataSource.setUrl("jdbc:mysql://localhost:3306/spring-app-hib?useSSL=false");
-	        dataSource.setUsername("root");
-	        dataSource.setPassword("root");
-	        return dataSource;
-	    }
-	     
-	    private Properties hibernateProperties() {
-	        Properties properties = new Properties();
-	        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-	        properties.put("hibernate.show_sql", true);
-	        properties.put("hibernate.format_sql", false);
-	        properties.put("hibernate.hbm2ddl.auto", "validate");
-	        return properties;        
-	    }
-	    
+
+	@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/spring-app-hib?useSSL=false");
+		dataSource.setUsername("root");
+		dataSource.setPassword("root");
+		return dataSource;
+	}
+
+	private Properties hibernateProperties() {
+		Properties properties = new Properties();
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		properties.put("hibernate.show_sql", true);
+		properties.put("hibernate.format_sql", false);
+		properties.put("hibernate.hbm2ddl.auto", "update");
+		return properties;
+	}
+
 	/*
 	 * @Bean
 	 * 

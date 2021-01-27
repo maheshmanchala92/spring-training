@@ -9,6 +9,56 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var v1 = 0;
+function GetDynamicTextBox(index){
+    return '<input name = "course" type="text" />' +
+            '<input type = "button" value="Remove" onclick = "RemoveTextBox(this)" class="btn btn-danger" />';
+}
+
+// onchange="update()"
+// function update(){
+//  var course = new Array();
+// 	$("input:text[name=course]").each(function(){
+// 		course.push($(this));
+// 	});
+// }
+function AddTextBox() {
+    var div = document.createElement('DIV');
+    div.innerHTML = GetDynamicTextBox(v1++);
+    document.getElementById("TextBoxContainer").appendChild(div);
+}
+ 
+function RemoveTextBox(div) {
+    document.getElementById("TextBoxContainer").removeChild(div.parentNode);
+}
+ 
+function RecreateDynamicTextboxes() {
+    var values = eval(v1++);
+    if (values != null) {
+        var html = "";
+        for (var i = 0; i < values.length; i++) {
+            html += "<div>" + GetDynamicTextBox(values[i]) + "</div>";
+        }
+        document.getElementById("TextBoxContainer").innerHTML = html;
+    }
+}
+window.onload = RecreateDynamicTextboxes;
+
+
+function AddListTextBox() {
+    var div = document.createElement('DIV');
+    div.innerHTML = '<input name = "courseList" type="hidden" ' + 'value="' + listTextBox() +'" />';
+    document.getElementById("TextBoxContainer").appendChild(div);
+}
+
+function listTextBox(){
+	var values = $("input[name='course']")
+    .map(function(){return $(this).val();}).get();
+    return values;
+}
+
+</script>
 
 </head>
 <body>
@@ -42,8 +92,20 @@
 					<input class="form-control" type="email" name="email" 
 					placeholder="please enter your email id here" 
 					required/>
+					<label for="ssn" class="text-primary">
+					Please Enter Your SSN Number: </label>
+					<input class="form-control" type="number" name="ssn.ssnNo" 
+					placeholder="please enter your ssn number here" 
+					required/>
 					<br>
-					<input type="submit" class="btn btn-primary" value="Save User">
+					<input id="btnAdd" type="button" value="add" onclick="AddTextBox()" 
+					class="btn btn-success"/> 
+					<br />
+					<div id="TextBoxContainer">
+						<!--Textboxes will be added here -->
+					</div>
+					<br /> 
+					<input type="submit" class="btn btn-primary" onclick="AddListTextBox()" value="Save User">
 				</form>
 			</div>
 		</div>
