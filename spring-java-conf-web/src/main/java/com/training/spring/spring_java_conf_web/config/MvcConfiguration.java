@@ -18,10 +18,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan(basePackages="com.training")
 @EnableWebMvc
-public class MvcConfiguration extends WebMvcConfigurerAdapter{
+public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
-	public ViewResolver getViewResolver(){
+	public ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");// 			/WEB-INF/views/home.jsp
 		resolver.setSuffix(".jsp");
@@ -57,7 +57,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		properties.put("hibernate.show_sql", true);
 		properties.put("hibernate.format_sql", false);
-		properties.put("hibernate.hbm2ddl.auto", "validate");
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
 
