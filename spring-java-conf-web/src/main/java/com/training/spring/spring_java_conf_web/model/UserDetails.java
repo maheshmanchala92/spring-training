@@ -19,17 +19,17 @@ public class UserDetails {
 	private String userName;
 	private String password;
 	private String email;
+	private String courseList;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ssnId", referencedColumnName = "id")
     private SSNNumber ssn;
 	
-//	@OneToMany(mappedBy="userDetails")
-	@OneToMany(
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
-    private List<Address> course;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinTable(name = "UserDetails_Address", 
+//	joinColumns = { @JoinColumn(name = "userId") }, 
+//	inverseJoinColumns = { @JoinColumn(name = "adderssId") })
+	private List<Address> address;
 
 	public Integer getUserId() {
 		return userId;
@@ -71,15 +71,23 @@ public class UserDetails {
 		this.ssn = ssn;
 	}
 
-	public List<Address> getCourse() {
-		return course;
+	public List<Address> getAddress() {
+		return address;
 	}
 
-	public void setCourse(List<Address> course) {
-		this.course = course;
+	public void setAddress(List<Address> address) {
+		this.address = address;
 	}
 
 	public UserDetails() {
 		super();
+	}
+
+	public String getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(String courseList) {
+		this.courseList = courseList;
 	}
 }

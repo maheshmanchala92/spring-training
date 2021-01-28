@@ -1,5 +1,6 @@
 package com.training.spring.spring_java_conf_web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.training.spring.spring_java_conf_web.model.Address;
 import com.training.spring.spring_java_conf_web.model.UserDetails;
 import com.training.spring.spring_java_conf_web.service.UserService;
 
@@ -44,15 +46,16 @@ public class FirstController {
 	}
 	
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-	public String sendUserNameModel(UserDetails user, HttpServletRequest request) {
-		/*
-		 * String coursesSTR = request.getParameter("courseList"); List<Address>
-		 * courseList = Stream.of(coursesSTR.split(",")) .map(p -> new Address(p))
-		 * .collect(Collectors.toList());
-		 * 
-		 * user.setCourse(courseList);
-		 */
-		userService.saveUser(user);
+	public String sendUserNameModel(UserDetails userDetails, HttpServletRequest request) {
+		String addrSTR = request.getParameter("courseList");
+		String[] addresses = addrSTR.split(",");
+		List<Address> addrList = new ArrayList<Address>();
+		for (String address : addresses) {
+			addrList.add(new Address(address));
+		}
+		 
+		userDetails.setAddress(addrList);
+		userService.saveUser(userDetails);
 		// call Repository - >store user name and pwd in table
 		return "redirect:viewAllUsers";// viewAllUsers(); // /WEB-INF/views/viewAllUsers.jsp
 	}

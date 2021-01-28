@@ -2,64 +2,45 @@ package com.training.spring.spring_java_conf_web.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Address {
 
 	@Id
-	@GeneratedValue
-	private Long courseId;
-	private String courseName;
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Long adderssId;
+	private String location;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "userId", nullable = false) private UserDetails
-	 * userDetails;
-	 */
-
-	public Long getCourseId() {
-		return courseId;
+	public Long getAdderssId() {
+		return adderssId;
 	}
 
-	public void setCourseId(Long courseId) {
-		this.courseId = courseId;
+	public void setAdderssId(Long adderssId) {
+		this.adderssId = adderssId;
 	}
 
-	public String getCourseName() {
-		return courseName;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	/*
-	 * public UserDetails getUserDetails() { return userDetails; }
-	 * 
-	 * public void setUserDetails(UserDetails userDetails) { this.userDetails =
-	 * userDetails; }
-	 */
+
+	public Address(Long adderssId, String location) {
+		super();
+		this.adderssId = adderssId;
+		this.location = location;
+	}
+
+	public Address(String location) {
+		super();
+		this.location = location;
+	}
 
 	public Address() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public Address(Long courseId, String courseName) {
-		super();
-		this.courseId = courseId;
-		this.courseName = courseName;
-//		this.userDetails = userDetails;
-	}
-
-	public Address(String courseName) {
-		super();
-		this.courseName = courseName;
-	}
-
-	/*
-	 * public Address(String courseName) { super(); this.courseName = courseName; //
-	 * this.userDetails = userDetails; }
-	 */
 }

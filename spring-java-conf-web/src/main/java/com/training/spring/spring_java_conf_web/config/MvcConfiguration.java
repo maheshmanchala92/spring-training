@@ -18,8 +18,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan(basePackages="com.training")
 @EnableWebMvc
-//@EnableTransactionManagement
-//@PropertySource(value = { "classpath:application.properties" })
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean
@@ -59,17 +57,8 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		properties.put("hibernate.show_sql", true);
 		properties.put("hibernate.format_sql", false);
-		properties.put("hibernate.hbm2ddl.auto", "update");
+		properties.put("hibernate.hbm2ddl.auto", "validate");
 		return properties;
 	}
 
-	/*
-	 * @Bean
-	 * 
-	 * @Autowired public HibernateTransactionManager
-	 * transactionManager(SessionFactory s) { HibernateTransactionManager txManager
-	 * = new HibernateTransactionManager(); txManager.setSessionFactory(s); return
-	 * txManager; }
-	 */
-	
 }
