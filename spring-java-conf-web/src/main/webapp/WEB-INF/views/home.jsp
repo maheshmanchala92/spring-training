@@ -22,6 +22,7 @@
 	<a href="viewAllUsers" class="btn btn-primary">View All Users</a>
 	<a href="addStudent" class="btn btn-warning">Add Student (Many To Many)</a>
 	<a href="addPerson" class="btn btn-warning">Add Person (Composite key)</a>
+	<a href="addEmployee" class="btn btn-warning">Add Employee (MappedSuperclass)</a>
 	
 </body>
 </html>
