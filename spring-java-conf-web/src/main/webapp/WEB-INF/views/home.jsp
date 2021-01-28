@@ -18,7 +18,10 @@
 <body>
 	<h1>Hello World!</h1>
 	<p>This is the homepage!</p>
-	<a href="addUser" class="btn btn-success">Add new user</a>
+	<a href="addUser" class="btn btn-success">Add New User(One To One, One To Many)</a>
 	<a href="viewAllUsers" class="btn btn-primary">View All Users</a>
+	<a href="addStudent" class="btn btn-warning">Add Student (Many To Many)</a>
+	<a href="addPerson" class="btn btn-warning">Add Person (Composite key)</a>
+	
 </body>
 </html>
