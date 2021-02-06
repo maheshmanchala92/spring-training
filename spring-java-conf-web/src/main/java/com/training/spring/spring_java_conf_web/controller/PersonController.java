@@ -17,7 +17,7 @@ public class PersonController {
 	
 	@RequestMapping("/addPerson")
 	public ModelAndView addPerson() {
-		ModelAndView mav = new ModelAndView("addPerson");
+		ModelAndView mav = new ModelAndView("addPerson"); //WEB-INF/views/addPerson.jsp
 		return mav;
 	}
 	

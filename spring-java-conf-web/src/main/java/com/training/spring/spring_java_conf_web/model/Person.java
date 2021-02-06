@@ -2,9 +2,11 @@ package com.training.spring.spring_java_conf_web.model;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-public class Person {
+@Table(name = "Person_Table")
+public class Person {//Person_Table
 
 	@EmbeddedId
 	private PersonComposite composite;

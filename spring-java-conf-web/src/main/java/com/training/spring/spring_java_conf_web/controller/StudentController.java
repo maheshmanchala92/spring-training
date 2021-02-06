@@ -33,9 +33,8 @@ public class StudentController {
 		
 		List<Course> courses = new ArrayList<Course>();
 		
-		for (String string : course) {
-			System.out.println(string);
-			Course c = new Course(new Integer(string), string);
+		for (String cid : course) {
+			Course c = new Course(new Integer(cid));
 			courses.add(c);			
 		}
 		student.setCourses(courses);
